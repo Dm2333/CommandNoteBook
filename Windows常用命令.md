@@ -1,3 +1,21 @@
+### Wireshark 常用命令：
+
+好用的 Filter：
+
+    http   直接搜 HTTP 协议
+    http contains www   HTTP 请求包含
+    tcp.port == 80   指定 80 端口的 TCP 通讯
+    http.request.method == GET  指定 HTTP GET 请求
+    http.request.uri contains .php  URL请求中包含 .php 的所有流量
+
+保存 HTTP 请求的图片：
+
+    File -> Export Objects -> HTTP
+
+保存当前单个连接的 十六进制：
+
+    Copy -> Bytes -> Hex Stream
+
 ### 关闭 端口关联进程
 	
     netstat -aon | findstr PORT
